@@ -4,6 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirect</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #555;
+        }
+        p {
+            color: #777;
+            font-size: 1rem;
+        }
+    </style>
     <script type="text/javascript">
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -14,13 +42,27 @@
             const url = getQueryParam('url');
             if (url) {
                 window.location.href = decodeURIComponent(url);
-            } else {
-                document.body.innerHTML = '<h1>No URL specified</h1>';
             }
         }
     </script>
 </head>
 <body>
-    <h1>Redirecting...</h1>
+    <div class="container">
+        <h1>Redirecting...</h1>
+        <p>If you are not redirected automatically, <a id="redirectLink" href="#">click here</a>.</p>
+        <p>Note: Discord buttons in RPC only support HTTP(S) links. This website serves as a redirect to launch the <code>roblox://</code> or <code>steam://</code> links.</p>
+    </div>
+    <script type="text/javascript">
+        window.onload = function() {
+            const url = getQueryParam('url');
+            if (url) {
+                const decodedUrl = decodeURIComponent(url);
+                document.getElementById('redirectLink').href = decodedUrl;
+                window.location.href = decodedUrl;
+            } else {
+                document.body.innerHTML = '<h1>No URL specified</h1>';
+            }
+        }
+    </script>
 </body>
 </html>
