@@ -60,7 +60,7 @@
                 document.getElementById('redirectLink').href = decodedUrl;
                 window.location.href = decodedUrl;
             } else {
-                document.body.innerHTML = '<h1>No URL specified</h1>';
+                document.body.innerHTML = '<h1>No URL specified</h1><br> <p>Note: Discord buttons in RPC only support HTTP(S) links. This website serves as a redirect to launch the <code>roblox://</code> or <code>steam://</code> links.</p>';
             }
         }
     </script>
